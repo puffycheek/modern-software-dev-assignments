@@ -35,10 +35,11 @@ QUESTION = (
     "to fetch a user by id and returns only the user's name as a string."
 )
 
-
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
-
+YOUR_SYSTEM_PROMPT = """
+You are a programmer. You should return a python code block with a function that meets the requirements of the user.
+Return just the code.
+"""
 
 # For this simple example
 # For this coding task, validate by required snippets rather than exact string
@@ -56,6 +57,8 @@ def YOUR_CONTEXT_PROVIDER(corpus: List[str]) -> List[str]:
 
     For example, return [] to simulate missing context, or [corpus[0]] to include the API docs.
     """
+    if corpus:
+        return [corpus[0]]
     return []
 
 
@@ -92,6 +95,7 @@ def extract_code_block(text: str) -> str:
 def test_your_prompt(system_prompt: str, context_provider: Callable[[List[str]], List[str]]) -> bool:
     """Run up to NUM_RUNS_TIMES and return True if any output matches EXPECTED_OUTPUT."""
     context_docs = context_provider(CORPUS)
+    # print("[DEBUG] context_docs:", context_docs)
     user_prompt = make_user_prompt(QUESTION, context_docs)
 
     for idx in range(NUM_RUNS_TIMES):

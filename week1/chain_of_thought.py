@@ -8,7 +8,18 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+You are a math problem solver. You should solve the problem step by step, and output the result in 
+the exact format of "Answer: {the result}" 
+
+<example>
+What is 4^2 * 10
+Steps:
+1. 4^2 is 16
+2. 16 * 10 is 160
+So you should return the final result as: Answer: 160
+</example>
+"""
 
 
 USER_PROMPT = """

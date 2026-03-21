@@ -15,7 +15,9 @@ Keep the implementation minimal.
 """
 
 # TODO: Fill this in!
-YOUR_REFLEXION_PROMPT = ""
+YOUR_REFLEXION_PROMPT = """
+Fix your implementation of func is_valid_password(password: str) so that are flagged cases get the same result as expected.
+"""
 
 
 # Ground-truth test suite used to evaluate generated code
@@ -96,6 +98,13 @@ def your_build_reflexion_context(prev_code: str, failures: List[str]) -> str:
 
     Return a string that will be sent as the user content alongside the reflexion system prompt.
     """
+    if prev_code and failures:
+        failure_msg = "\n".join(failures)
+        return (
+            f"Previous code is:\n```{prev_code}\n```\n\n"
+            f"The following requirements were MISSING or INCORRECT:\n{failure_msg}\n\n"
+            f"Please fix the code based on these failures."
+        )
     return ""
 
 

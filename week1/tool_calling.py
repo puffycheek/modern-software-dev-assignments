@@ -70,7 +70,20 @@ TOOL_REGISTRY: Dict[str, Callable[..., str]] = {
 # ==========================
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+You are an assistant that provides tools available to use.
+
+Available tool:
+- output_every_func_return_type
+  Purpose: List all function names and return types in a Python file
+  Args: file_path (optional string)
+
+When asked to call a tool, respond with a valid JSON of this format:
+{
+  "tool": "tool_name",
+  "args": {"key": "value"}
+}
+"""
 
 
 def resolve_path(p: str) -> str:
@@ -155,7 +168,7 @@ def test_your_prompt(system_prompt: str) -> bool:
             continue
         if actual.strip() == expected.strip():
             print(f"Generated tool call: {call}")
-            print(f"Generated output: {actual}")
+            print(f"Generated output:\n {actual}")
             print("SUCCESS")
             return True
         else:

@@ -7,7 +7,27 @@ load_dotenv()
 NUM_RUNS_TIMES = 5
 
 # TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+YOUR_SYSTEM_PROMPT = """
+You are a character processing unit. Process the word by reversing it single character by single character, 
+without modifying any characters. You should only return the reversed word.
+
+<example>
+Input: helloword
+Output: drowolleh
+</example>
+
+<example>
+Input: apple
+Output: elppa
+</example>
+
+<example>
+Input: status
+Output: sutats
+</example>
+
+"""
+
 
 USER_PROMPT = """
 Reverse the order of letters in the following word. Only output the reversed word, no other text:
